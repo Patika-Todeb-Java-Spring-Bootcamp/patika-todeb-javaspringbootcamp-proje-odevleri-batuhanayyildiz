@@ -11,11 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Setter
 
 public class BookDTO {
-    String name;
-    String overview;
-
-    @Autowired
-    Writer writer;
-    @Autowired
-    Category category;
+    private String name;
+    private String overview;
+    private Writer writers;
+    private Category categories;
 }

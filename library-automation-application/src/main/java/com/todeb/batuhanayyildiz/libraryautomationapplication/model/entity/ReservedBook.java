@@ -4,11 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import javax.persistence.*;
+import java.time.LocalDate;
+
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class ReservedBook {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private User user; // The person who makes reservation
+
+    @OneToOne
+    private Book book;
+
+    private LocalDate reservedDate;
+    private LocalDate returnDate;
+
+
+
+
 }
