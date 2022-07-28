@@ -1,9 +1,10 @@
 package com.todeb.batuhanayyildiz.libraryautomationapplication.model.dto;
 
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity.Book;
+import lombok.Data;
 
 import java.util.List;
-
+@Data
 public class WriterDTO {
 
     private String name;
