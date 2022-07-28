@@ -6,9 +6,9 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface BookMapper {
-    BookDTO toDto(Book entity);
+    public BookDTO toDto(Book entity);
 
 
-    Book toEntity(BookDTO dto);
+    public Book toEntity(BookDTO dto);
 
 }
