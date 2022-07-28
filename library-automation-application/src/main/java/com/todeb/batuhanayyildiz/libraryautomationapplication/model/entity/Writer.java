@@ -22,8 +22,8 @@ public class Writer {
     @ManyToMany(cascade=CascadeType.MERGE)
     @JoinTable(
             name = "book_writer",
-            joinColumns = @JoinColumn(name = "writer_id"),
-            inverseJoinColumns = @JoinColumn(name = "book_id"))
+            joinColumns = @JoinColumn(name = "writer_id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "book_id",nullable = false))
     private List<Book> books;
 
 }

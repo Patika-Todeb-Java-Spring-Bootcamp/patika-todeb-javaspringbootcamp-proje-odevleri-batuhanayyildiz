@@ -18,10 +18,11 @@ public class ReservedBook {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    @JoinColumn(name="client_id")
     private Client client; // The person who makes reservation
 
-    @OneToOne(mappedBy = "reservedBook")
+    @OneToOne(mappedBy = "reservedBook",fetch = FetchType.LAZY)
     private Book book;
 
     @DateTimeFormat(pattern="dd/MM/yyyy")
