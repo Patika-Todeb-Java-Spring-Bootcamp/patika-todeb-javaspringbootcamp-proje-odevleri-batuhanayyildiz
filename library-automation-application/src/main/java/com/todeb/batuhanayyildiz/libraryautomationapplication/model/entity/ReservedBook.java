@@ -16,10 +16,11 @@ public class ReservedBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private User user; // The person who makes reservation
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Client client; // The person who makes reservation
+
+    @OneToOne(mappedBy = "reservedBook")
     private Book book;
 
     private LocalDate reservedDate;

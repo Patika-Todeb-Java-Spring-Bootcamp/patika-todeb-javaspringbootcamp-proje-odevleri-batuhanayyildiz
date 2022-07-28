@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -13,6 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BookDTO {
     private String name;
     private String overview;
-    private Writer writers;
-    private Category categories;
+    private List<Writer> writers;
+    private List<Category> categories;
 }

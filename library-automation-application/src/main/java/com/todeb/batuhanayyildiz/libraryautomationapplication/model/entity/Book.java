@@ -24,8 +24,8 @@ public class Book {
     private String overview;
     private String isbnNo;
 
-    @OneToOne(cascade=CascadeType.MERGE)
-    @JoinColumn(name = "book_id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "reservedBook_id")
     private ReservedBook reservedBook;
 
     @ManyToMany(cascade=CascadeType.MERGE)
