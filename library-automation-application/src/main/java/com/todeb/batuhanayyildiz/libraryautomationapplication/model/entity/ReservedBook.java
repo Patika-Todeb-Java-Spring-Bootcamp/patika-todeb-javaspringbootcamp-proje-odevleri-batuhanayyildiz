@@ -3,6 +3,7 @@ package com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -23,8 +24,11 @@ public class ReservedBook {
     @OneToOne(mappedBy = "reservedBook")
     private Book book;
 
-    private LocalDate reservedDate;
-    private LocalDate returnDate;
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private LocalDate reservationDate=LocalDate.now();
+
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private LocalDate returnDate=LocalDate.now().plusDays(30);
 
 
 

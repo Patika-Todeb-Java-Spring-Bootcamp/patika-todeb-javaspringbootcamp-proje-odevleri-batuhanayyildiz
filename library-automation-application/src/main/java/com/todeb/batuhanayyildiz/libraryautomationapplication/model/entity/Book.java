@@ -28,7 +28,7 @@ public class Book {
     @JoinColumn(name = "reservedBook_id")
     private ReservedBook reservedBook;
 
-    @ManyToMany(cascade=CascadeType.MERGE)
+    @ManyToMany(mappedBy = "books",cascade=CascadeType.MERGE)
     private List<Writer> writers;
     @ManyToMany(cascade=CascadeType.MERGE)
     private List<Category> categories;

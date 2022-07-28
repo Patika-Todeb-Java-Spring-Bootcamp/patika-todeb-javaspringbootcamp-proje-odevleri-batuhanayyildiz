@@ -20,6 +20,10 @@ public class Writer {
     private String about;
 
     @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+            name = "book_writer",
+            joinColumns = @JoinColumn(name = "writer_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books;
 
 }

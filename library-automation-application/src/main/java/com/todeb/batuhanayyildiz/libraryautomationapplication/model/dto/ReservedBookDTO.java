@@ -9,6 +9,6 @@ public class ReservedBookDTO {
 
     private Client client; // The person who makes reservation
     private Book book;
-    private LocalDate reservedDate;
+    private LocalDate reservationDate;
     private LocalDate returnDate;
 }
