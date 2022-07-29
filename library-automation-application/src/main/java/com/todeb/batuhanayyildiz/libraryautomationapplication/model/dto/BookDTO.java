@@ -14,5 +14,5 @@ public class BookDTO {
     private String name;
     private String overview;
     private List<Writer> writers;
-    private List<Category> categories;
+
 }
