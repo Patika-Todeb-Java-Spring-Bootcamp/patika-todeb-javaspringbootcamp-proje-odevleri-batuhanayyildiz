@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Data
 public class ReservedBookDTO {
 
+    private String name;
     private Client client; // The person who makes reservation
     private Book book;
     private LocalDate reservationDate;

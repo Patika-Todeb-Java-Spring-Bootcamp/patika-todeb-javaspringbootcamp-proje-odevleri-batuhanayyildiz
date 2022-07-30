@@ -10,7 +10,7 @@ import java.util.List;
 public interface CategoryService {
     List<Category> getAllCategories();
 
-    Category getCategory(Long id);
+    Category getCategoryById(Long id);
 
     Category createCategory(CategoryDTO categoryDTO);
 

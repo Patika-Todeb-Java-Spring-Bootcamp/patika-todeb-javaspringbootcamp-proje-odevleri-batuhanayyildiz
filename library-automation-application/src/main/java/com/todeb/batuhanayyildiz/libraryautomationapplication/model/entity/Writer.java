@@ -9,6 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
 public class Writer {
 

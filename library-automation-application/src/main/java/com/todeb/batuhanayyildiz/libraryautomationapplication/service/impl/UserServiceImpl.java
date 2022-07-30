@@ -8,6 +8,7 @@ import com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity.Role;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity.User;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.repository.UserRepository;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.security.JwtTokenProvider;
+import com.todeb.batuhanayyildiz.libraryautomationapplication.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -34,11 +35,13 @@ public class UserServiceImpl {
 
     private final AuthenticationManager authenticationManager;
 
-
+    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }
 
+
+    @Override
     public String signin(String username, String password) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -49,6 +52,7 @@ public class UserServiceImpl {
         }
     }
 
+    @Override
     public String signup(UserDataDTO userDataDTO, boolean isAdmin) {
         ModelMapper modelMapper = new ModelMapper();
         User user = modelMapper.map(userDataDTO, User.class);
@@ -63,6 +67,7 @@ public class UserServiceImpl {
         }
     }
 
+    @Override
     public void delete(String username) {
         User byUsername = userRepository.findByUsername(username);
         if (byUsername == null) {
@@ -73,6 +78,7 @@ public class UserServiceImpl {
         userRepository.deleteByUsername(username);
     }
 
+    @Override
     public User search(String username) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
@@ -81,10 +87,12 @@ public class UserServiceImpl {
         return user;
     }
 
+    @Override
     public User whoami(HttpServletRequest req) {
         return userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
     }
 
+    @Override
     public String refresh(String username) {
         return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
     }

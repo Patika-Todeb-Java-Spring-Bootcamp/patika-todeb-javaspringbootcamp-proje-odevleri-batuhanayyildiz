@@ -19,7 +19,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String categoryName;
+    private String name;
     @ManyToMany(mappedBy = "categories",cascade = CascadeType.MERGE)
     private List<Book> books;
 }

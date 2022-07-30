@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,7 +23,6 @@ public class Book {
     private Long id;
     private String name;
     private String overview;
-    private String isbnNo;
 
     @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "reservedBook_id")

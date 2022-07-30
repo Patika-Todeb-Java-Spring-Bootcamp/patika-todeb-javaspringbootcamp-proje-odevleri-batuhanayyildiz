@@ -2,6 +2,7 @@ package com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity;
 
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.response.Member;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +10,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+
 @Entity
 public class Client extends Member {
     @Id

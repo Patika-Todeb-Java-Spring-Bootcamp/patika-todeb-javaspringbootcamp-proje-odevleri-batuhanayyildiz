@@ -11,12 +11,14 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
 public class ReservedBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
     @JoinColumn(name="client_id")

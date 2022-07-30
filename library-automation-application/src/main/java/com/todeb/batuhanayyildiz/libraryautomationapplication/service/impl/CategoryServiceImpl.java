@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category getCategory(Long id){
+    public Category getCategoryById(Long id){
         Optional<Category> byId = categoryRepository.findById(id);
         return byId.orElseThrow(()-> new NotFoundException("Category"));
     }
@@ -49,19 +49,19 @@ public class CategoryServiceImpl implements CategoryService{
         }
         Category updatedCategory = categoryByName.get();
         if (!ObjectUtils.isEmpty(categoryDTO.getCategoryName())) {
-            updatedCategory.setCategoryName(categoryDTO.getCategoryName());
+            updatedCategory.setName(categoryDTO.getCategoryName());
         }
         return categoryRepository.save(updatedCategory);
     }
 
     @Override
     public boolean deleteCategory(Long categoryId){
-        Category category=getCategory(categoryId);
+        Category category=getCategoryById(categoryId);
         if(!ObjectUtils.isEmpty(category)){
-            categoryRepository.delete(getCategory(categoryId));
+            categoryRepository.delete(getCategoryById(categoryId));
             return true;
         }
-        else throw new NotFoundException("id"+categoryId.toString());
+        else throw new NotFoundException("id"+""+categoryId.toString());
 
     }
 
