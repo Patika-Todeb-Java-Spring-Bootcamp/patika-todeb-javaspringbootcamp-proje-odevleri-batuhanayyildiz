@@ -1,6 +1,6 @@
 ### Requirements
 1.	User-based (Role yönelik yetkilendirme)
-2.	Görevli /Admin / Kullanıcı
+2.	Görevli /Admin / Client
 3.	Kategori (Roman, Tarih vb.)
 4.	Login
 5.	Kitap Ödünç Alma ve Teslim
@@ -17,8 +17,9 @@
 4.	Admin yeni kitap kaydı yapar, kitap siler. 
 5.	Admin kategorizasyonu düzenler
 6.	Admin görevli ekler.
-7.	Kullanıcı kitap rezervasyonu yapar. 
-8.	Kullanıcı kitap ödünç alır ve teslim eder. Geç teslim durumunda borç ödemesi yapar.
-9.	Kullanıcı kütüphane için feedback verir. Kütüphaneye gelmesini istediği kitapları belirtir
+7.	Client kitap rezervasyonu yapar. 
+8.	Client kitap ödünç alır ve teslim eder. Geç teslim durumunda borç ödemesi yapar.
+9.	Client kütüphane için feedback verir. Kütüphaneye gelmesini istediği kitapları belirtir
 ### Design
-![Use case diagram](https://user-images.githubusercontent.com/84630121/179302852-f521cd64-67d6-43cf-80a7-017403409f5d.jpeg)
+![Use case diagram]
+![179302852-f521cd64-67d6-43cf-80a7-017403409f5d](https://user-images.githubusercontent.com/84630121/181916993-d4f18bfe-0177-4ef7-9525-355e8ce8c1d3.jpeg)
