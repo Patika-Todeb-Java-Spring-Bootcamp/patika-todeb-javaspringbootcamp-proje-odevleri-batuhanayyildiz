@@ -1,6 +1,6 @@
 package com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity;
 
-import com.todeb.batuhanayyildiz.libraryautomationapplication.Member;
+import com.todeb.batuhanayyildiz.libraryautomationapplication.model.response.Member;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

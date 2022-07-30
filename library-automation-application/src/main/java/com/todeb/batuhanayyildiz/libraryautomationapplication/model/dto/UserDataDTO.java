@@ -1,5 +1,6 @@
 package com.todeb.batuhanayyildiz.libraryautomationapplication.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Data
+@AllArgsConstructor
 public class UserDataDTO implements Serializable {
 
     @Size(min = 5, max = 15)
