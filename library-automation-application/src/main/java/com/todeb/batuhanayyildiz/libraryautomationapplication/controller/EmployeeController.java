@@ -6,6 +6,7 @@ import com.todeb.batuhanayyildiz.libraryautomationapplication.service.impl.Emplo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,19 +17,19 @@ public class EmployeeController {
     @Autowired
     private EmployeeServiceImpl employeeService;
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity getAllEmployees(){
         List<Employee> allEmployees= employeeService.getAllEmployees();
         return ResponseEntity.ok(allEmployees);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity getEmployeeById(@PathVariable("id") Long id){
         Employee byId = employeeService.getEmployeeById(id);
         return ResponseEntity.status(HttpStatus.OK).body(byId);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity createNewEmployee(@RequestBody EmployeeDTO employeeDTO) {
         Employee respEmployee = employeeService.createEmployee(employeeDTO);
@@ -37,13 +38,13 @@ public class EmployeeController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(respEmployee);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete")
     public ResponseEntity deleteEmployee(@RequestParam(name="id") Long id){
         employeeService.deleteEmployee(id);
         return ResponseEntity.status(HttpStatus.OK).body("Related Employee is deleted successfully");
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{name}")
     public ResponseEntity updateEmployee(
             @PathVariable String name,

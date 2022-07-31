@@ -6,6 +6,7 @@ import com.todeb.batuhanayyildiz.libraryautomationapplication.service.impl.Reser
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +18,19 @@ public class ReservedBookController {
     @Autowired
     private ReservedBookServiceImpl reservedBookService;
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity getAllReservedBooks(){
         List<ReservedBook> allReservedBooks= reservedBookService.getAllReservedBooks();
         return ResponseEntity.ok(allReservedBooks);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity getReservedBookById(@PathVariable("id") Long id){
         ReservedBook byId = reservedBookService.getReservedBookById(id);
         return ResponseEntity.status(HttpStatus.OK).body(byId);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity createNewReservedBook(@RequestBody ReservedBookDTO reservedBookDTO) {
         ReservedBook respReservedBook = reservedBookService.createReservedBook(reservedBookDTO);
@@ -38,13 +39,13 @@ public class ReservedBookController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(respReservedBook);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete")
     public ResponseEntity deleteReservedBook(@RequestParam(name="id") Long id){
         reservedBookService.deleteReservedBook(id);
         return ResponseEntity.status(HttpStatus.OK).body("Related ReservedBook is deleted successfully");
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{name}")
     public ResponseEntity updateReservedBook(
             @PathVariable String name,

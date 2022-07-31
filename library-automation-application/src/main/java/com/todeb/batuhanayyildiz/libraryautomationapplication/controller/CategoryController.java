@@ -7,6 +7,7 @@ import com.todeb.batuhanayyildiz.libraryautomationapplication.service.impl.Categ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +18,19 @@ public class CategoryController {
     @Autowired
     private CategoryServiceImpl categoryService;
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
     @GetMapping("/all")
     public ResponseEntity getAllCategorys() {
         List<Category> allCategories = categoryService.getAllCategories();
         return ResponseEntity.ok(allCategories);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity getCategoryById(@PathVariable("id") Long id) {
         Category byId = categoryService.getCategoryById(id);
         return ResponseEntity.status(HttpStatus.OK).body(byId);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity createNewCategory(@RequestBody CategoryDTO categoryDTO) {
         Category respCategory = categoryService.createCategory(categoryDTO);
@@ -38,13 +39,13 @@ public class CategoryController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(respCategory);
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete")
     public ResponseEntity deleteCategory(@RequestParam(name = "id") Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.status(HttpStatus.OK).body("Related Category is deleted successfully");
     }
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{name}")
     public ResponseEntity updateCategory(
             @PathVariable String name,
