@@ -2,6 +2,7 @@ package com.todeb.batuhanayyildiz.libraryautomationapplication.service.impl;
 
 
 
+import com.todeb.batuhanayyildiz.libraryautomationapplication.exception.CustomJwtException;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.exception.NotFoundException;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.dto.BookDTO;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity.Book;
@@ -10,6 +11,8 @@ import com.todeb.batuhanayyildiz.libraryautomationapplication.repository.BookRep
 import com.todeb.batuhanayyildiz.libraryautomationapplication.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -37,8 +40,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book createBook(BookDTO bookDTO){
-        Book book = BOOK_MAPPER.toEntity(bookDTO);
-        return bookRepository.save(book);
+        if (!bookRepository.existsByName(bookDTO.getName())){
+            Book book = BOOK_MAPPER.toEntity(bookDTO);
+            return bookRepository.save(book);
+        }
+        else {
+            throw new CustomJwtException("There is a book with same name.", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override

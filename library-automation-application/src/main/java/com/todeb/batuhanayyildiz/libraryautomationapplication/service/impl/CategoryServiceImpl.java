@@ -1,5 +1,6 @@
 package com.todeb.batuhanayyildiz.libraryautomationapplication.service.impl;
 
+import com.todeb.batuhanayyildiz.libraryautomationapplication.exception.CustomJwtException;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.exception.NotFoundException;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.dto.CategoryDTO;
 import com.todeb.batuhanayyildiz.libraryautomationapplication.model.entity.Category;
@@ -8,6 +9,7 @@ import com.todeb.batuhanayyildiz.libraryautomationapplication.repository.Categor
 import com.todeb.batuhanayyildiz.libraryautomationapplication.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -37,8 +39,14 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category createCategory(CategoryDTO categoryDTO){
-        Category category = CATEGORY_MAPPER.toEntity(categoryDTO);
-        return categoryRepository.save(category);
+        if (!categoryRepository.existsByName(categoryDTO.getCategoryName())){
+            Category category = CATEGORY_MAPPER.toEntity(categoryDTO);
+            return categoryRepository.save(category);
+        }
+        else {
+            throw new CustomJwtException("There is a book with same name.", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override

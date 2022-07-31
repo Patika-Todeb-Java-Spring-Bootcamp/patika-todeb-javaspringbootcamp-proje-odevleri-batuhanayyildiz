@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     Optional<Book> findBookByName(String bookName);
+    boolean existsByName(String username);
 
 }
