@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category createCategory(CategoryDTO categoryDTO){
-        if (!categoryRepository.existsByName(categoryDTO.getCategoryName())){
+        if (!categoryRepository.existsByName(categoryDTO.getName())){
             Category category = CATEGORY_MAPPER.toEntity(categoryDTO);
             return categoryRepository.save(category);
         }
@@ -56,8 +56,8 @@ public class CategoryServiceImpl implements CategoryService{
             throw new NotFoundException("Category");
         }
         Category updatedCategory = categoryByName.get();
-        if (!ObjectUtils.isEmpty(categoryDTO.getCategoryName())) {
-            updatedCategory.setName(categoryDTO.getCategoryName());
+        if (!ObjectUtils.isEmpty(categoryDTO.getName())) {
+            updatedCategory.setName(categoryDTO.getName());
         }
         return categoryRepository.save(updatedCategory);
     }
